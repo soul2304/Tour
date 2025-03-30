@@ -8,12 +8,16 @@ const browseToursTab = document.getElementById('browse-tours-tab');
 const contactUsTab = document.getElementById('contact-us-tab');
 const userSection = document.getElementById('user-section');
 const contactSection = document.getElementById('contact-section');
+const tourList = document.getElementById('tour-list');
 
 // Admin credentials
 const adminCredentials = {
     email: "admin@gmail.com",
     password: "admin123"
 };
+
+// Replace with Render API URL
+const API_BASE_URL = 'https://tour-h3gn.onrender.com';
 
 // Toggle authentication section for Sign In
 signinButton.addEventListener('click', () => {
@@ -60,9 +64,16 @@ authForm.addEventListener('submit', (event) => {
 });
 
 // Toggle visibility of Browse Tours section
-browseToursTab.addEventListener('click', () => {
+browseToursTab.addEventListener('click', async () => {
     console.log('Browse Tours tab clicked'); // Debug log
     userSection.style.display = userSection.style.display === 'none' || userSection.style.display === '' ? 'block' : 'none';
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/tours`);
+        const tours = await response.json();
+        tourList.innerHTML = tours.map(tour => `<li>${tour.name} - $${tour.price}</li>`).join('');
+    } catch (error) {
+        console.error('Error fetching tours:', error);
+    }
 });
 
 // Toggle visibility of Contact Us section
@@ -84,7 +95,7 @@ const inspectChangesButton = document.getElementById('inspect-changes-button');
 if (inspectChangesButton) {
     inspectChangesButton.addEventListener('click', async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/admin-changes');
+            const response = await fetch(`${API_BASE_URL}/api/admin-changes`);
             const changes = await response.json();
             if (changes.length === 0) {
                 alert('No changes made yet.');
@@ -102,7 +113,7 @@ if (inspectChangesButton) {
 // Save admin changes to MongoDB
 const saveAdminChange = async (change) => {
     try {
-        await fetch('http://localhost:5000/api/admin-changes', {
+        await fetch(`${API_BASE_URL}/api/admin-changes`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ change })
