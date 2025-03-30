@@ -1,3 +1,4 @@
+require('dotenv').config(); // Add this line at the top
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection
-const mongoUri = "mongodb+srv://aromal22:<kSCT4AJ2BLJxwElK>@cluster0.v85lh.mongodb.net/tourBooking?retryWrites=true&w=majority"; // Replace <db_password> with your actual password
+const mongoUri = process.env.MONGO_URI; // Use the environment variable
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
