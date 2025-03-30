@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: tour-booking-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://aromal22:<kSCT4AJ2BLJxwElK>@cluster0.v85lh.mongodb.net/tourBooking?retryWrites=true&w=majority
