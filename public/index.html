@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Booking Website</title>
+   
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <button id="signin-button">Sign In</button>
+                <button id="signup-button">Sign Up</button>
+            </div>
+        </nav>
+        <h1>Welcome to [Tour Operator's Name] Booking Platform</h1>
+        <div id="tabs-container">
+            <ul>
+                <li><a href="#" id="browse-tours-tab">Browse Tours</a></li>
+                <li><a href="#" id="contact-us-tab">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <!-- Authentication Section -->
+        <section id="auth-section" style="display: none;">
+            <h2 id="auth-title">Login</h2>
+            <form id="auth-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit" id="auth-submit">Login</button>
+            </form>
+        </section>
+
+        <!-- User Functionality -->
+        <section id="user-section" style="display: none;">
+            <h2>Browse and Book Tours</h2>
+            <!-- Placeholder for tour browsing and booking -->
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" style="display: none;">
+            <h2>Contact Us</h2>
+            <p>For inquiries, please contact us at [email@example.com] or call [Phone Number].</p>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin-section" style="display: none;">
+            <!-- Back Button -->
+            <button id="back-button">Back</button>
+
+            <!-- Inspect Changes Button -->
+            <button id="inspect-changes-button">Inspect Changes</button>
+
+            <!-- Save Change Button -->
+            <button id="save-change-button">Save Change</button>
+
+            <!-- Add Tour Form -->
+            <form id="add-tour-form">
+                <input type="text" id="tour-name" placeholder="Tour Name" required />
+                <textarea id="tour-description" placeholder="Tour Description" required></textarea>
+                <input type="number" id="tour-price" placeholder="Tour Price" required />
+                <input type="url" id="tour-image-url" placeholder="Tour Image URL" required />
+                <button type="submit">Add Tour</button>
+            </form>
+            <p id="admin-feedback"></p>
+        </section>
+    </main>
+    <!-- <footer>
+        <p>&copy; [Year] [Tour Operator's Name]. All rights reserved.</p>
+    </footer> -->
+<script src="script.js"></script>
+<script src="admin.js" type="module"></script>
+</body>
+</html>
