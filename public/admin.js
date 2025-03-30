@@ -3,6 +3,9 @@ const feedback = document.getElementById('admin-feedback');
 const inspectChangesButton = document.getElementById('inspect-changes-button');
 const backButton = document.getElementById('back-button');
 
+// Replace with Render API URL
+const API_BASE_URL = 'https://tour-h3gn.onrender.com';
+
 // Add Tour Form Submission
 addTourForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -13,7 +16,7 @@ addTourForm.addEventListener('submit', async (event) => {
     const tourImageUrl = document.getElementById('tour-image-url').value;
 
     try {
-        await fetch('http://localhost:5000/api/tours', {
+        await fetch(`${API_BASE_URL}/api/tours`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: tourName, description: tourDescription, price: parseFloat(tourPrice), imageUrl: tourImageUrl })
@@ -31,7 +34,7 @@ addTourForm.addEventListener('submit', async (event) => {
 inspectChangesButton.addEventListener('click', async () => {
     console.log('Inspect Changes button clicked'); // Debug log
     try {
-        const response = await fetch('http://localhost:5000/api/admin-changes');
+        const response = await fetch(`${API_BASE_URL}/api/admin-changes`);
         const changes = await response.json();
         alert(changes.map(change => `${new Date(change.timestamp).toLocaleString()}: ${change.change}`).join('\n'));
     } catch (error) {
